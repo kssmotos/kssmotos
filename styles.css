@@ -7,7 +7,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start; /* Alinha o conteúdo ao topo */
-    height: 100vh;
     overflow: auto; /* Permite rolagem */
     padding: 20px 10px; /* Adiciona espaçamento no topo e laterais */
     box-sizing: border-box; /* Inclui padding no cálculo do tamanho */
