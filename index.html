@@ -1,67 +1,313 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2CMTBREYDQ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2CMTBREYDQ');
-</script>
-	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KSS Motos - Linktree</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="https://i.postimg.cc/vZqXqSGS/2025-LOGO-KSS-MOTOS-c-borda.png" type="image/png">
+    <title>Visite nossa loja!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url('https://i.postimg.cc/Bb7wpQ4f/AMARANTE.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.2rem;
+        }
+        
+        .location-card {
+            position: relative;
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .location-card span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .location-card:hover span {
+            background: rgba(0, 0, 0, 0.9);
+        }
+        
+        .whatsapp-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #25D366;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .location-card:hover .whatsapp-icon {
+            opacity: 1;
+        }
+
+   .whatsapp-background {
+    position: relative;
+    background-color: rgb(255, 0, 0); /* cor sólida atrás */
+    background-image: url('https://i.postimg.cc/Bb0jBsk9/AMARANTE-3.png');
+    background-size: contain;
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+
+.whatsapp-background::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+#destinations-page footer {
+    position: relative;
+    z-index: 10;
+  }
+
+  @font-face {
+  font-family: 'BebasNeueBold';
+  src: url('/fonts/BebasNeueBold.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+    </style>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <img src="logo.png" alt="Logo KSS Motos" class="logo">
-            <h1>KSS MOTOS</h1>
-            <p>Whatsapp</p>
+<body class="font-sans bg-gray-50">
+    <!-- Home Page -->
+    <div id="home-page" class="min-h-screen flex flex-col">
+        <!-- Header -->
+            <div class="container mx-auto flex justify-between items-center">
+                <a href="#" class="flex items-center space-x-2 text-2xl font-bold text-yellow-300">
+                <span> </span>
+            </a>
+                <nav>
+                    <ul class="flex space-x-6">
+                        <li><a href="#" class="text-yellow-300 hover:text-yellow-100 transition"></a></li>
+                        <li><a href="#destinations" class="text-yellow-300 hover:text-yellow-100 transition"></a></li>
+                        <li><a href="#" class="text-yellow-300 hover:text-yellow-100 transition"></a></li>
+                    </ul>
+                </nav>
+            </div>
         </header>
-        <div class="links">
-    <a href="https://wa.me/5599985259015" class="link-card" style="background-image: url('./assets/fotos/amarante.webp');" target="_blank">
-        <span>AMARANTE - MA</span>
-		 </a>
-			
-	<a href="https://wa.me/5599981085552" class="link-card" style="background-image: url('./assets/fotos/sitionovo.webp');" target="_blank">
-        <span>SÍTIO NOVO - MA</span>
-		 </a>
-			
-	<a href="https://wa.me/5599984580520" class="link-card" style="background-image: url('./assets/fotos/grajau.webp');" target="_blank">
-        <span>GRAJAÚ - MA</span>
-		 </a>
-	
-	<a href="https://wa.me/5599984699075" class="link-card" style="background-image: url('./assets/fotos/barradocorda.webp');" target="_blank">
-        <span>BARRA DO CORDA - MA</span>
-		 </a>
-			
-	<a href="https://wa.me/5599984808984" class="link-card" style="background-image: url('./assets/fotos/balsas.webp');" target="_blank">
-        <span>BALSAS - MA</span>
-		 </a>
-			
-	<a href="https://wa.me/5599984610135" class="link-card" style="background-image: url('./assets/fotos/presidentedutra.webp');" target="_blank">
-        <span>PRESIDENTE DUTRA - MA</span>
-		 </a>
-			
-	<a href="https://wa.me/5599984066230" class="link-card" style="background-image: url('./assets/fotos/pedreiras.webp');" target="_blank">
-        <span>PEDREIRAS - MA</span>
-		 </a>
-			
-	<a href="https://wa.me/5599985173727" class="link-card" style="background-image: url('./assets/fotos/codo.webp');" target="_blank">
-        <span>CODÓ - MA</span>
-		 </a>
-			
-	<a href="https://wa.me/5599985275599" class="link-card" style="background-image: url('./assets/fotos/bacabal.webp');" target="_blank">
-        <span>BACABAL - MA</span>
-		 </a>
-			<br>
-</div>
+        
+        <!-- Hero Section -->
+        <section class="hero flex-grow flex items-center justify-center text-white">
+            <div class="text-center px-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">Seja bem vindo(a)</h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">A KSS MOTOS é especializada na venda de peças e acessórios para motocicletas, com qualidade, confiança e atendimento especializado para quem vive sobre duas rodas.</p>
+                <button onclick="navigateToDestinations()" class="bg-green-600 hover:bg-green-900 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg">
+                    Nosso Whatsapp <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-8 relative z-10">
+            <div class="container mx-auto text-center">
+                <p>© 2025 GRUPO KSS MOTOS- Todos os direitos reservados</p>
+                <div class="mt-4 flex justify-center space-x-4">
+                    <a href="https://www.facebook.com/kssmotosoficial/?locale=pt_BR" class="hover:text-indigo-400 transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/kssmotosoficial/" class="hover:text-indigo-400 transition"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </footer>
     </div>
+    
+    <!-- Página do Whatsapp -->
+    <div id="destinations-page" class="min-h-screen hidden">
+    <section class="whatsapp-background relative min-h-screen">
+        <header class="bg-opacity-0 bg-blue-400 py-4 px-6 sticky top-0 z-50">
+            <div class="container mx-auto flex justify-between items-center">
+                <button onclick="navigateToHome()" class="bg-yellow-300 hover:bg-white text-red-600 font-bold py-2 px-4 rounded-full transition">
+                    <i class="fas fa-arrow-left mr-2"></i> Voltar
+                </button>
+            </div>
+        </header>
+        
+        <main class="container mx-auto py-12 px-4 relative z-10">
+<h2 class="text-5xl md:text-7xl lg:text-8xl font-bold text-center mb-12 text-white" style="font-family: 'BebasNeueBold', sans-serif;">
+  Nosso Whatsapp
+</h2>
+            
+            <div class="card-grid">
+                <!-- Amarante -->
+                <a href="https://wa.me/5599985259015" class="location-card" style="background-image: url('https://i.postimg.cc/Y03NtXhr/amarante.webp');" target="_blank">
+                    <span>AMARANTE - MA</span>
+                    <div class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                </a>
+                
+                <!-- Sítio Novo -->
+                <a href="https://wa.me/5599981085552" class="location-card" style="background-image: url('https://i.postimg.cc/KztrHcbg/sitionovo.webp');" target="_blank">
+                    <span>SÍTIO NOVO - MA</span>
+                    <div class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                </a>
+                
+                <!-- Grajaú -->
+                <a href="https://wa.me/5599984580520" class="location-card" style="background-image: url('https://i.postimg.cc/ht3rJ3Mh/grajau.webp');" target="_blank">
+                    <span>GRAJAÚ - MA</span>
+                    <div class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                </a>
+                
+                <!-- Barra do Corda -->
+                <a href="https://wa.me/5599984699075" class="location-card" style="background-image: url('https://i.postimg.cc/TYfQBbp2/barradocorda.webp');" target="_blank">
+                    <span>BARRA DO CORDA - MA</span>
+                    <div class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                </a>
+                
+                <!-- Balsas -->
+                <a href="https://wa.me/5599984808984" class="location-card" style="background-image: url('https://i.postimg.cc/bNm0MF7L/balsas.webp');" target="_blank">
+                    <span>BALSAS - MA</span>
+                    <div class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                </a>
+                
+                <!-- Presidente Dutra -->
+                <a href="https://wa.me/5599984610135" class="location-card" style="background-image: url('https://i.postimg.cc/gks4p0ZV/presidentedutra.webp');" target="_blank">
+                    <span>PRESIDENTE DUTRA - MA</span>
+                    <div class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                </a>
+                
+                <!-- Pedreiras -->
+                <a href="https://wa.me/5599984066230" class="location-card" style="background-image: url('https://i.postimg.cc/g0XK3qBs/pedreiras.webp');" target="_blank">
+                    <span>PEDREIRAS - MA</span>
+                    <div class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                </a>
+                
+                <!-- Codó -->
+                <a href="https://wa.me/5599985173727" class="location-card" style="background-image: url('https://i.postimg.cc/kg5sgdQk/codo.webp');" target="_blank">
+                    <span>CODÓ - MA</span>
+                    <div class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                </a>
+                
+                <!-- Bacabal -->
+                <a href="https://wa.me/5599985275599" class="location-card" style="background-image: url('https://i.postimg.cc/kMFvN5w0/bacabal.webp');" target="_blank">
+                    <span>BACABAL - MA</span>
+                    <div class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                </a>
+
+                <!-- Açailândia -->
+                <a onclick="showCustomAlert()" class="location-card" style="background-image: url('https://i.postimg.cc/qqWN3jjZ/EMBREVE.webp');">
+                    <span>------- MA</span>
+                    <div class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                </a>
+
+                 <!-- Ceará -->
+                <a onclick="showCustomAlert()" class="location-card" style="background-image: url('https://i.postimg.cc/qqWN3jjZ/EMBREVE.webp');">
+                    <span>------- MA</span>
+                    <div class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                </a>
+
+                 <!-- Babaçulândia -->
+                <a onclick="showCustomAlert()" class="location-card" style="background-image: url('https://i.postimg.cc/qqWN3jjZ/EMBREVE.webp');">
+                    <span>------- MA</span>
+                    <div class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                </a>
+                
+            </div>
+        </main>
+        
+        <footer class="bg-gray-800 text-white py-8">
+            <div class="container mx-auto text-center">
+                <p>© 2025 GRUPO KSS MOTOS - Todos os direitos reservados</p>
+                <div class="mt-4 flex justify-center space-x-4">
+                    <a href="https://www.facebook.com/kssmotosoficial/?locale=pt_BR" class="hover:text-indigo-400 transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/kssmotosoficial/" class="hover:text-indigo-400 transition"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        function showCustomAlert() {
+             const alertBox = document.getElementById('custom-alert');
+             alertBox.classList.remove('hidden');
+             alertBox.classList.add('opacity-100');
+
+             // Oculta automaticamente depois de 4 segundos
+             setTimeout(() => {
+             alertBox.classList.add('hidden');
+            }, 6000);
+        }
+
+        function navigateToDestinations() {
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('destinations-page').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+        
+        function navigateToHome() {
+            document.getElementById('destinations-page').classList.add('hidden');
+            document.getElementById('home-page').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+    </script>
+
+    <div id="custom-alert" class="fixed top-2 right-5 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg shadow-lg hidden z-50 transition-all duration-300">
+  <strong class="font-bold">Aviso:</strong>
+  <span class="block sm:inline">Número ainda não está disponível. Em breve será atualizado.</span>
+    </div>
+
 </body>
 </html>
