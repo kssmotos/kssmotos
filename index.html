@@ -139,6 +139,27 @@
                 </button>
             </div>
         </section>
+
+         <div class="w-full bg-gray-900 text-white flex items-center justify-between p-4 rounded-0 shadow-lg">
+  <div>
+    <h2 class="text-lg font-bold">🎵 Rádio KSS Motos</h2>
+    <p class="text-sm text-gray-400">Tocando agora</p>
+  </div>
+  
+  <div class="flex items-center gap-4">
+    <button id="playBtn" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg">
+      ▶️ Play
+    </button>
+    <!--button id="pauseBtn" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg">
+      ⏸ Pause
+    </button-->
+  </div>
+
+  <audio id="radioPlayer">
+    <source src="http://82.145.63.6:4506/stream" type="audio/mpeg">
+  </audio>
+</div>
+
         
         <!-- Footer -->
         <footer class="bg-gray-800 text-white py-8 relative z-10">
@@ -302,6 +323,19 @@
             document.getElementById('home-page').classList.remove('hidden');
             window.scrollTo(0, 0);
         }
+
+        const player = document.getElementById("radioPlayer");
+  const playBtn = document.getElementById("playBtn");
+  const pauseBtn = document.getElementById("pauseBtn");
+
+  playBtn.addEventListener("click", () => {
+    player.play();
+  });
+
+  pauseBtn.addEventListener("click", () => {
+    player.pause();
+  });
+
     </script>
 
     <div id="custom-alert" class="fixed top-2 right-5 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg shadow-lg hidden z-50 transition-all duration-300">
