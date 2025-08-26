@@ -160,33 +160,38 @@
             </div>
         </header>
         
-        <!-- Hero Section -->
-        <section class="hero flex-grow flex items-center justify-center text-white">
-            <div class="text-center px-4">
-                <br><br><br><br>
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">Seja bem vindo(a)</h1>
-                <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">A KSS MOTOS é especializada na venda de peças e acessórios para motocicletas, com qualidade, confiança e atendimento especializado para quem vive sobre duas rodas.</p>
-                <button onclick="navigateToDestinations()" class="text-xl bg-green-600 hover:bg-green-900 text-white font-bold py-4 px-16 rounded-full transition-all transform hover:scale-105 shadow-lg animate-shake">
-    Nosso Whatsapp <i class="fas fa-arrow-right ml-2"></i>
-</button>
+         <!-- Hero Section -->
+    <section class="hero flex-grow flex items-center justify-center text-white">
+        <div class="text-center px-4 flex flex-col items-center">
+            <br><br><br><br>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">Seja bem vindo(a)</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
+                A KSS MOTOS é especializada na venda de peças e acessórios para motocicletas,
+                com qualidade, confiança e atendimento especializado para quem vive sobre duas rodas.
+            </p>
 
-                 <!-- Seção de Chat -->
-<div class="bg-red bg-opacity-20 p-4 rounded-xl shadow-lg max-w-md mx-auto mb-8">
-  <h3 class="text-xl font-bold mb-3 text-white-800 text-center">😎 Deixe um comentário!</h3>
-  <div id="chat" class="h-48 overflow-y-auto p-3 border rounded mb-3 bg-gray-800 text-black"></div>
-  <input type="text" id="chat-name" placeholder="Seu nome" 
-       class="w-full p-2 mb-2 border rounded bg-gray-800 text-white placeholder-gray-400"/>
-  <input type="text" id="chat-msg" placeholder="Digite sua mensagem" 
-       class="w-full p-2 mb-2 border rounded bg-gray-800 text-white placeholder-gray-400"/>
-  <button onclick="sendMessage()" class="w-full bg-green-600 hover:bg-green-700 text-gray font-bold py-2 px-4 rounded transition">
-    Enviar
-  </button>
-</div>
+            <!-- Botão WhatsApp -->
+            <button onclick="navigateToDestinations()"
+                    class="text-xl bg-green-600 hover:bg-green-900 text-white font-bold py-4 px-16 rounded-full transition-all transform hover:scale-105 shadow-lg animate-shake mb-6">
+                Nosso Whatsapp <i class="fas fa-arrow-right ml-2"></i>
+            </button>
 
+            <!-- Chat -->
+            <div class="bg-red bg-opacity-20 p-4 rounded-xl shadow-lg max-w-md w-full mb-8">
+                <h3 class="text-xl font-bold mb-3 text-white text-center">😎 Deixe um comentário!</h3>
+                <div id="chat" class="h-48 overflow-y-auto p-3 border rounded mb-3 bg-gray-800 text-black"></div>
+                <input type="text" id="chat-name" placeholder="Seu nome"
+                       class="w-full p-2 mb-2 border rounded bg-gray-800 text-white placeholder-gray-400"/>
+                <input type="text" id="chat-msg" placeholder="Digite sua mensagem"
+                       class="w-full p-2 mb-2 border rounded bg-gray-800 text-white placeholder-gray-400"/>
+                <button onclick="sendMessage()"
+                        class="w-full bg-green-600 hover:bg-green-700 text-gray font-bold py-2 px-4 rounded transition">
+                    Enviar
+                </button>
             </div>
-
-            
-        </section>
+        </div>
+    </section>
+</div> <!-- fecha #home-page -->
 
 
          <section class="w-full bg-gradient-to-r from-gray-900 to-black text-white p-6 shadow-2xl">
@@ -197,7 +202,7 @@
       </div>
       <div>
         <h2 class="text-xl font-bold text-gray-100 tracking-wide">RÁDIO KSS MOTOS</h2>
-        <p id="statusText" class="text-sm text-gray-400 mt-1">Aperte o Play!</p>
+        <p id="statusText" class="text-sm text-gray-400 mt-1">Aperte o play!</p>
       </div>
     </div>
     <div class="text-center md:text-right">
