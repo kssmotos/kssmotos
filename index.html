@@ -158,26 +158,34 @@
         </section>
 
 
-         <div class="w-full bg-gray-900 text-white flex items-center justify-between p-4 rounded-0 shadow-lg">
-  <div>
-    <h2 class="text-lg font-bold">🎵 Rádio KSS Motos</h2>
-    <p class="text-sm text-gray-400">Tocando agora</p>
+         <section class="w-full bg-gradient-to-r from-gray-900 to-black text-white p-6 shadow-2xl">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+    <div class="flex items-center space-x-4 mb-4 md:mb-0">
+      <div>
+        <img src="https://i.postimg.cc/Wzsy18q8/2025-UMA-EMPRESA-DO-GRUPO-KSS-MOTOS.png" alt="Logo Rádio" class="h-10 w-10 object-cover rounded-full">
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-gray-100 tracking-wide">RÁDIO KSS MOTOS</h2>
+        <p id="statusText" class="text-sm text-gray-400 mt-1">Tocando agora</p>
+      </div>
+    </div>
+    <div class="text-center md:text-right">
+      <p id="playlistName" class="text-sm font-semibold text-gray-300"></p>
+    </div>
+    <div class="flex-shrink-0 mt-4 md:mt-0">
+      <button id="playBtn" class="px-5 py-2 bg-green-500 hover:bg-green-600 transition-all duration-300 ease-in-out rounded-xl text-lg font-semibold shadow-md">
+        ▶️ Tocar
+      </button>
+    </div>
   </div>
-  
-  <div class="flex items-center gap-4">
-    <button id="playBtn" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg">
-      ▶️ Play
-    </button>
-  </div>
-
-  <audio id="radioPlayer">
+  <audio id="radioPlayer" class="hidden">
     <source src="https://fpsnew1.listen2myradio.com:2199/listen.php?ip=82.145.63.6&port=4506&type=ice&mount=stream" type="audio/mpeg">
   </audio>
-</div>
+</section>
 
         
         <!-- Footer -->
-        <footer class="bg-gray-800 text-white py-8 relative z-10">
+        <!--footer class="bg-gray-800 text-white py-8 relative z-10">
             <div class="container mx-auto text-center">
                 <p>© 2025 GRUPO KSS MOTOS- Todos os direitos reservados</p>
                 <div class="mt-4 flex justify-center space-x-4">
@@ -186,7 +194,7 @@
                 </div>
             </div>
         </footer>
-    </div>
+    </div-->
     
     <!-- Página do Whatsapp -->
     <div id="destinations-page" class="min-h-screen hidden">
@@ -316,6 +324,40 @@
     </div>
     
     <script>
+  function updatePlaylistName() {
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    const playlistElement = document.getElementById('playlistName');
+    let playlistName = '';
+
+    // Converter o horário para minutos para facilitar a comparação
+    const currentTimeInMinutes = currentHour * 60 + currentMinute;
+    const gospellStart1 = 8 * 60; // 8:00
+    const mistaStart = 10 * 60 + 30; // 10:30
+    const gospellStart2 = 16 * 60 + 30; // 16:30
+    const gospellEnd = 18 * 60; // 18:00
+
+    if (currentTimeInMinutes >= gospellStart1 && currentTimeInMinutes < mistaStart) {
+      playlistName = 'Playlist: GOSPEL - 08h15 às 10h30';
+    } else if (currentTimeInMinutes >= mistaStart && currentTimeInMinutes < gospellStart2) {
+      playlistName = 'Playlist: MISTA - 10h30 às 16h30';
+    } else if (currentTimeInMinutes >= gospellStart2 && currentTimeInMinutes < gospellEnd) {
+      playlistName = 'Playlist: GOSPEL - 16h30 às 18h00';
+    } else {
+      playlistName = 'Rádio Online'; // Nome padrão fora dos horários
+    }
+
+    playlistElement.textContent = playlistName;
+  }
+
+  // Chamar a função ao carregar a página
+  updatePlaylistName();
+  // Atualizar a cada minuto para garantir que a playlist mude no horário correto
+  setInterval(updatePlaylistName, 60000);
+</script>
+
+    <script>
         function showCustomAlert() {
              const alertBox = document.getElementById('custom-alert');
              alertBox.classList.remove('hidden');
@@ -339,17 +381,36 @@
             window.scrollTo(0, 0);
         }
 
-        const player = document.getElementById("radioPlayer");
-  const playBtn = document.getElementById("playBtn");
-  const pauseBtn = document.getElementById("pauseBtn");
+         const player = document.getElementById('radioPlayer');
+const playBtn = document.getElementById('playBtn');
+const statusText = document.getElementById('statusText');
 
-  playBtn.addEventListener("click", () => {
-    player.play();
-  });
+playBtn.addEventListener('click', () => {
+  // Mostra mensagem de carregamento antes de tentar tocar
+  statusText.textContent = "⏳ Carregando, aguarde alguns segundos...";
+  statusText.classList.remove("text-red-500", "text-gray-400");
+  statusText.classList.add("text-yellow-400");
 
-  pauseBtn.addEventListener("click", () => {
-    player.pause();
-  });
+  player.play()
+    .then(() => {
+      statusText.textContent = "🟢 Tocando agora 🎶";
+      statusText.classList.remove("text-red-500", "text-yellow-400");
+      statusText.classList.add("text-gray-400");
+    })
+    .catch(() => {
+      statusText.textContent = "🔴 Rádio offline no momento";
+      statusText.classList.remove("text-gray-400", "text-yellow-400");
+      statusText.classList.add("text-red-500");
+    });
+});
+
+// Caso dê erro durante a execução
+player.addEventListener("error", () => {
+  statusText.textContent = "🔴 Rádio offline no momento";
+  statusText.classList.remove("text-gray-400", "text-yellow-400");
+  statusText.classList.add("text-red-500");
+});
+
 
     </script>
 
