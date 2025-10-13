@@ -417,36 +417,120 @@
             window.scrollTo(0, 0);
         }
 
-         const player = document.getElementById('radioPlayer');
-const playBtn = document.getElementById('playBtn');
-const statusText = document.getElementById('statusText');
+          const player = document.getElementById('radioPlayer');
+    const playBtn = document.getElementById('playBtn');
+    const statusText = document.getElementById('statusText');
+    let isPlaying = false;
+    let reconnectTimeout = null;
+    const RECONNECT_DELAY = 5000; // Tenta reconectar a cada 5 segundos
 
-playBtn.addEventListener('click', () => {
-  // Mostra mensagem de carregamento antes de tentar tocar
-  statusText.textContent = "⏳ Carregando, aguarde alguns segundos...";
-  statusText.classList.remove("text-red-500", "text-gray-400");
-  statusText.classList.add("text-yellow-400");
+    // Função para atualizar o status na interface
+    function updateStatus(status, className) {
+        statusText.textContent = status;
+        statusText.className = `text-sm mt-1 ${className}`;
+    }
 
-  player.play()
-    .then(() => {
-      statusText.textContent = "🟢 Tocando agora 🎶";
-      statusText.classList.remove("text-red-500", "text-yellow-400");
-      statusText.classList.add("text-gray-400");
-    })
-    .catch(() => {
-      statusText.textContent = "🔴 Rádio offline no momento";
-      statusText.classList.remove("text-gray-400", "text-yellow-400");
-      statusText.classList.add("text-red-500");
+    // Função para tentar iniciar/reiniciar a reprodução
+    function startPlayback() {
+        if (isPlaying) {
+            updateStatus("⏳ Reconectando...", "text-yellow-400");
+            
+            // Tenta recarregar o stream antes de tocar
+            player.load(); 
+            
+            player.play()
+                .then(() => {
+                    updateStatus("🟢 Tocando agora 🎶", "text-gray-400");
+                    console.log("Reprodução iniciada/reiniciada com sucesso.");
+                    // Limpa o timeout se a reprodução for bem-sucedida
+                    clearTimeout(reconnectTimeout); 
+                })
+                .catch(error => {
+                    // Se a reprodução falhar (por exemplo, servidor ainda fora do ar)
+                    updateStatus("🔴 Falha na conexão. Tentando novamente...", "text-red-500");
+                    console.error("Erro ao tentar reproduzir:", error);
+                    // Tenta novamente após o delay
+                    scheduleReconnect();
+                });
+        }
+    }
+
+    // Função para agendar a próxima tentativa de reconexão
+    function scheduleReconnect() {
+        // Limpa qualquer timeout pendente para evitar tentativas duplicadas
+        clearTimeout(reconnectTimeout);
+        reconnectTimeout = setTimeout(() => {
+            if (isPlaying) {
+                console.log("Tentando reconexão automática...");
+                startPlayback();
+            }
+        }, RECONNECT_DELAY);
+    }
+    
+    // Evento de clique do botão
+    playBtn.addEventListener('click', () => {
+        if (player.paused) {
+            isPlaying = true; // Define que o usuário quer que toque
+            startPlayback();
+            playBtn.textContent = '⏸️ Pausar';
+            playBtn.classList.replace('bg-green-500', 'bg-red-500');
+            playBtn.classList.replace('hover:bg-green-600', 'hover:bg-red-600');
+        } else {
+            isPlaying = false; // Define que o usuário pausou
+            player.pause();
+            updateStatus("⏸️ Pausado", "text-gray-400");
+            playBtn.textContent = '▶️ Tocar';
+            playBtn.classList.replace('bg-red-500', 'bg-green-500');
+            playBtn.classList.replace('hover:bg-red-600', 'hover:bg-green-600');
+            // Garante que a reconexão automática seja interrompida
+            clearTimeout(reconnectTimeout); 
+        }
     });
-});
 
-// Caso dê erro durante a execução
-player.addEventListener("error", () => {
-  statusText.textContent = "🔴 Rádio offline no momento";
-  statusText.classList.remove("text-gray-400", "text-yellow-400");
-  statusText.classList.add("text-red-500");
-});
+    // 1. Ouve o evento de erro (servidor fora do ar, link quebrado, etc.)
+    player.addEventListener("error", () => {
+        if (isPlaying) {
+            updateStatus("❌ Erro de conexão. Tentando reconectar...", "text-red-500");
+            scheduleReconnect();
+        } else {
+            updateStatus("🔴 Rádio offline no momento", "text-red-500");
+        }
+    });
+    
+    // 2. Ouve quando a reprodução estagna (buffer vazio, interrupção de stream)
+    player.addEventListener("stalled", () => {
+        if (isPlaying) {
+            updateStatus("⏳ Stream estagnado. Tentando reconectar...", "text-yellow-400");
+            scheduleReconnect();
+        }
+    });
 
+    // 3. Ouve quando a reprodução para inesperadamente (pode ser o mesmo que 'stalled' ou 'error' em alguns casos)
+    player.addEventListener("ended", () => {
+        if (isPlaying) {
+            updateStatus("⏸️ Stream parado. Tentando reconectar...", "text-yellow-400");
+            scheduleReconnect();
+        }
+    });
+    
+    // Ouve quando a reprodução começa de novo (útil após um load() ou reconexão)
+    player.addEventListener("play", () => {
+        // Se a reprodução começar sem intervenção do usuário, atualiza o status
+        if(isPlaying) {
+            updateStatus("🟢 Tocando agora 🎶", "text-gray-400");
+            clearTimeout(reconnectTimeout); 
+            playBtn.textContent = '⏸️ Pausar';
+            playBtn.classList.replace('bg-green-500', 'bg-red-500');
+            playBtn.classList.replace('hover:bg-green-600', 'hover:bg-red-600');
+        }
+    });
+    
+    // Ouve quando a rádio está carregando dados novamente
+    player.addEventListener("waiting", () => {
+        if(isPlaying) {
+             updateStatus("⏳ Carregando...", "text-yellow-400");
+        }
+    });
 
     </script>
 
